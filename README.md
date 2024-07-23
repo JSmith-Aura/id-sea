@@ -70,6 +70,7 @@ This will need to be provided a list of trusted CA certificates, which is farily
        - /etc/ssl/certs/ca-bundle.crt:/etc/ssl/certs/ca-certificates.crt:ro
 ```
 
+
 ### Step 4. Configuring access control
 
 #### Option A) Give all users access
