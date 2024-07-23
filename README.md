@@ -57,7 +57,20 @@ max_age=86400 # Session lifetime in seconds. Defaults to 24 hours
 
 Redis support is planned, with an opaque session ID cookie instead of a JWT.
 
-### Step 3. Configuring access control
+### Step 3. Configuring TLS certificates (Docker)
+To reduce the size of the container and to reduce the ability of an attacker to live off the land, the container only has the id-sea binary. 
+This will need to be provided a list of trusted CA certificates, which is farily easy to do. Just mount them in via a docker volume.
+
+```yaml
+  id-sea:
+    image: ghcr.io/lachlan2k/id-sea:latest
+    container_name: idsea
+    restart: always
+    volumes:
+       - /etc/ssl/certs/ca-bundle.crt:/etc/ssl/certs/ca-certificates.crt:ro
+```
+
+### Step 4. Configuring access control
 
 #### Option A) Give all users access
 
@@ -127,6 +140,6 @@ Essentially, "wildcard" matching is only useful for matching suffixes. Wildcard 
 * email_allow_list
 * mandatory_role
 
-### Step 4. Configure your reverse proxy
+### Step 5. Configure your reverse proxy
 
 Coming soon
